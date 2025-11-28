@@ -1,0 +1,66 @@
+/* Styling Dasar & Font */
+body {
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+}
+
+/* Sidebar Wrapper */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+    width: 15rem;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    width: 100%;
+}
+
+/* Logic Toggle Sidebar (Class ini ditambah/hapus oleh jQuery) */
+body.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+/* Menu Sidebar - Active State */
+.list-group-item.active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-left: 4px solid #fff;
+    color: #fff !important;
+    font-weight: bold;
+}
+
+/* Menu Sidebar - Hover Effect */
+.list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Utility Colors */
+.primary-text { color: #0d6efd; }
+.secondary-bg { background-color: #e7f1ff; }
+
+/* Media Query Responsif (Desktop vs Mobile) */
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        width: 100%;
+    }
+
+    body.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
