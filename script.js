@@ -1,6 +1,6 @@
-// --- BAGIAN 1: jQuery (Sidebar & Navigasi) ---
+// --- jQuery (Sidebar & Navigasi) ---
 $(document).ready(function() {
-    // Toggle Sidebar
+   
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("body").toggleClass("toggled");
@@ -10,31 +10,28 @@ $(document).ready(function() {
     $(".menu-item").click(function(e) {
         e.preventDefault();
         
-        // Ubah Active Class pada Menu
         $(".menu-item").removeClass("active");
         $(this).addClass("active");
 
-        // Ambil ID View yang dituju
         let targetView = $(this).data("target");
         let menuText = $(this).text().trim();
 
-        // Ganti Tampilan
+       
         $(".view-section").addClass("d-none");
         $(targetView).removeClass("d-none");
         
-        // Ganti Judul Halaman
+
         $("#page-title").text(menuText);
     });
 });
 
-// --- BAGIAN 2: DATA & LOGIKA CRUD ---
 
-// Data Mahasiswa (Dummy)
+// Data Mahasiswa 
 let students = [
     { nim: "2411501045", nama: "Andri", jurusan: "Teknologi Informasi", ipk: 3.85 }
 ];
 
-// Data Mata Kuliah (Sesuai Permintaan)
+// Data Mata Kuliah 
 let courses = [
     { 
         kode: "TI-FS01", 
@@ -68,7 +65,7 @@ let courses = [
     }
 ];
 
-// --- FUNGSI UPDATE DASHBOARD ---
+// --- update dashhboard---
 function updateDashboardStats() {
     const countMhs = document.getElementById('count-mahasiswa');
     if (countMhs) countMhs.innerText = students.length;
@@ -78,12 +75,12 @@ function updateDashboardStats() {
 }
 
 // ==========================================
-// 1. LOGIKA CRUD MAHASISWA
+//            LOGIKA CRUD MAHASISWA
 // ==========================================
 const studentTableBody = document.querySelector('#studentTableBody');
 const studentForm = document.getElementById('studentForm');
 
-// Render Tabel Mahasiswa
+// Tabel Mahasiswa
 function renderStudents() {
     studentTableBody.innerHTML = "";
     students.forEach((student, index) => {
@@ -106,7 +103,6 @@ function renderStudents() {
     updateDashboardStats();
 }
 
-// Buka Modal Tambah MHS
 window.openStudentModal = function() {
     studentForm.reset();
     document.getElementById('studentId').value = "";
@@ -114,7 +110,7 @@ window.openStudentModal = function() {
     new bootstrap.Modal(document.getElementById('studentModal')).show();
 }
 
-// Buka Modal Edit MHS
+// edit mhs
 window.editStudent = function(index) {
     const s = students[index];
     document.getElementById('studentId').value = index;
@@ -126,7 +122,7 @@ window.editStudent = function(index) {
     new bootstrap.Modal(document.getElementById('studentModal')).show();
 }
 
-// Simpan Data MHS
+// simpan data mhs
 studentForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const id = document.getElementById('studentId').value;
@@ -144,7 +140,6 @@ studentForm.addEventListener('submit', function(e) {
     renderStudents();
 });
 
-// Hapus Data MHS
 window.deleteStudent = function(index) {
     if(confirm("Hapus data mahasiswa ini?")) {
         students.splice(index, 1);
@@ -153,7 +148,7 @@ window.deleteStudent = function(index) {
 }
 
 // ==========================================
-// 2. LOGIKA CRUD MATA KULIAH
+//          LOGIKA CRUD MATA KULIAH
 // ==========================================
 const courseTableBody = document.querySelector('#courseTableBody');
 const courseForm = document.getElementById('courseForm');
@@ -186,7 +181,7 @@ window.openCourseModal = function() {
     new bootstrap.Modal(document.getElementById('courseModal')).show();
 }
 
-// Buka Modal Edit MK
+
 window.editCourse = function(index) {
     const c = courses[index];
     document.getElementById('courseId').value = index;
@@ -198,7 +193,7 @@ window.editCourse = function(index) {
     new bootstrap.Modal(document.getElementById('courseModal')).show();
 }
 
-// Simpan Data MK
+// simpan data mk
 courseForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const id = document.getElementById('courseId').value;
@@ -216,7 +211,7 @@ courseForm.addEventListener('submit', function(e) {
     renderCourses();
 });
 
-// Hapus Data MK
+// hps data mk
 window.deleteCourse = function(index) {
     if(confirm("Hapus mata kuliah ini?")) {
         courses.splice(index, 1);
@@ -224,7 +219,6 @@ window.deleteCourse = function(index) {
     }
 }
 
-// --- INITIAL RENDER (Saat Web Dibuka) ---
 document.addEventListener("DOMContentLoaded", function() {
     renderStudents();
     renderCourses();
